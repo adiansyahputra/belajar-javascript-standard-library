@@ -1,0 +1,321 @@
+Number
+Number merupakan function yang digunakan untuk melakukan konversi ke tipe data number
+Jika data tidak bisa dikonversi ke number, secara otomatis hasilnya adalah NaN
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number 
+
+Kode : Number
+<script>
+
+    const input = "12345";
+    const number = Number(input);
+
+    console.info(typeof input);
+    console.info(typeof number);
+    console.info(number);
+
+    console.info(Number("salah"));
+
+    console.info(Number.MIN_VALUE);
+    console.info(Number.MAX_VALUE);
+    console.info(Number.MIN_SAFE_INTEGER);
+    console.info(Number.MAX_SAFE_INTEGER);
+    console.info(Number.NaN);
+
+    const data = Number("eko");
+    console.info(Number.isInteger(data));
+    console.info(Number.isNaN(data));
+
+    const value = Number("12345");
+    console.info(value.toString(2));
+    console.info(value.toLocaleString("id-ID"));
+    console.info(value.toLocaleString("en-US"));
+
+</script>
+
+Number Static Properties
+Number memiliki banyak static properties, seperti :
+Number.MIN_VALUE untuk mendapat number minimal
+Number.MAX_VALUE untuk mendapat number maksimal
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number#static_properties 
+
+Kode : Number Static Properties
+    console.info(Number.MIN_VALUE);
+    console.info(Number.MAX_VALUE);
+
+Number Static Method
+Number memiliki banyak static method, seperti :
+Number.isNaN(value) untuk mengecek apakah value NaN atau bukan
+Number.isInteger(value) untuk mengecek apakah value berupa integer atau bukan
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number#static_methods 
+
+Kode : Number Static Method
+    const data = Number("eko");
+    console.info(Number.isInteger(data));
+    console.info(Number.isNaN(data));
+
+Number Instance Method
+Number memiliki banyak instance method, seperti :
+Number.toLocalString(locale) untuk mengubah number menjadi string sesuai locale : https://www.lansweeper.com/knowledgebase/list-of-currency-culture-codes/ 
+Number.toString(radix) untuk mengubah number menjadi string sesuai radix
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number#instance_methods 
+
+Kode : Number Instance Method
+    const value = Number("12345");
+    console.info(value.toString(2));
+    console.info(value.toLocaleString("id-ID"));
+    console.info(value.toLocaleString("en-US"));
+
+String
+Tipe data String sudah kita bahas pada materi JavaScript Dasar
+Namun kita belum membahas instance method atau juga instance properties yang terdapat di String
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String 
+
+String Instance Method dan Properties
+String sendiri memiliki banyak sekali instance method dan properties
+Hal ini menjadikan untuk memanipulasi data String sangat mudah di JavaScript, seperti mengubah menjadi lowercase, UPPERCASE, memotong string menjadi array dan lain-lain
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#instance_methods 
+
+Kode : String Instance Method dan Properties
+<script>
+
+  const name = "Eko Kurniawan Khannedy";
+
+  console.info(name.length);
+  console.info(name.toLowerCase());
+  console.info(name.toUpperCase());
+  console.info(name.split(" "));
+  console.info(name);
+
+  const input = "     input data     "
+  console.info(input.trim());
+  console.info(input);
+
+</script>
+
+Array
+Tipe data Array sudah kita bahas di materi JavaScript Dasar
+Namun kita hanya membahas beberapa instance method yang ada di Array
+Sebenarnya, terdapat banyak sekali Instance Method yang ada di Array, dan kita akan coba bahas beberapa di sini
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array 
+
+Array Loop
+Sebelumnya kita biasa menggunakan for in dan for of untuk melakukan iterasi Array, namun Array juga memiliki method yang bernama forEach()
+Method forEach bisa digunakan juga untuk melakukan iterasi data array
+
+Kode : Array Loop
+<script>
+
+    {
+        // array loop
+        const array = ["Eko", "Kurnniawan", "Khannedy"];
+
+        array.forEach(function (value, index) {
+            console.info(`${index} : ${value}`);
+        });
+
+        array.forEach((value, index) => console.info(`${index} : ${value}`));
+
+        array.forEach(value => console.info(value));
+    }
+
+    {
+        // array queue
+
+        const queue = [];
+
+        queue.push("Eko");
+        queue.push("Kurniawan");
+        queue.push("Khannedy");
+
+        console.info(queue.shift());
+        console.info(queue.shift());
+        console.info(queue.shift());
+        console.info(queue.shift());
+    }
+
+    {
+        // array stack
+
+        const stack = [];
+
+        stack.push("Eko");
+        stack.push("Kurniawan");
+        stack.push("Khannedy");
+
+        console.info(stack.pop());
+        console.info(stack.pop());
+        console.info(stack.pop());
+        console.info(stack.pop());
+    }
+
+    {
+
+        // array search
+
+        const source = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5];
+
+        console.info(source.find(value => value > 3));
+        console.info(source.findIndex(value => value > 3));
+        console.info(source.includes(7));
+        console.info(source.indexOf(5));
+        console.info(source.lastIndexOf(5));
+
+    }
+
+    {
+
+        // array filter
+
+        const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        const ganjil = numbers.filter(value => value % 2 === 1);
+        const genap = numbers.filter(value => value % 2 === 0);
+
+        console.info(numbers);
+        console.info(ganjil);
+        console.info(genap);
+
+    }
+
+    {
+
+        // array transform
+
+        const names = ["Eko", "Kurniawan", "Khannedy"];
+        const namesUpper = names.map(value => value.toUpperCase());
+        console.info(namesUpper);
+
+        const namesReduce = names.reduce((before, value) => before + " " + value);
+        console.info(namesReduce);
+
+        const namesRight = names.reduceRight((before, value) => before + " " + value);
+        console.info(namesRight);
+
+        const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        const total = numbers.reduce((before, value) => before + value);
+        console.info(total);
+
+    }
+
+</script>
+
+Array Queue
+Dalam struktur data, terdapat tipe struktur data bernama Queue (Antrian)
+Dimana data masuk akan diposisikan di urutan paling belakang
+Sedangkan data keluar akan diposisikan dari urutan paling depan
+Mirip sekali dengan antrian, atau istilahnya FIFO (first in first out)
+Kita bisa menggunakan Array dengan bantuan function push() untuk menambah data di belakang, dan shift() untuk mengambil dan menghapus data paling depan
+
+Kode : Array Queue
+        const queue = [];
+
+        queue.push("Eko");
+        queue.push("Kurniawan");
+        queue.push("Khannedy");
+
+        console.info(queue.shift());
+        console.info(queue.shift());
+        console.info(queue.shift());
+        console.info(queue.shift());
+
+Array Stack
+Struktur data Stack (Tumpukan) kebalikan dari Queue, dimana aturannya mirip dengan tumpukan kartu
+Saat kita memasukkan data, kita akan memasukkan di urutan paling belakang (atau atas)
+Sedangkan saat kita mengambil data, kita akan mengambil data dari paling belakang (atau atas) terlebih dahulu
+Stack ini sifatnya LIFO (last in first out)
+Untuk menambah diurutan belakang, kita bisa menggunakan function push()
+Dan untuk mengambil dan menghapus paling belakang, kita bisa menggunakan function pop()
+
+Kode : Array Stack
+        const stack = [];
+
+        stack.push("Eko");
+        stack.push("Kurniawan");
+        stack.push("Khannedy");
+
+        console.info(stack.pop());
+        console.info(stack.pop());
+        console.info(stack.pop());
+        console.info(stack.pop());
+
+Array Search
+Array memiliki banyak function untuk melakukan pencarian :
+ Function
+Keterangan
+find(value => boolean) : value
+Mencari data sesuai dengan kondisi
+findIndex(value => boolean) : number
+Mencari data index sesuai dengan kondisi
+includes(value) : boolean
+Mengecek apakah terdapat data
+indexOf(value) : number
+Mengecek posisi index data
+lastIndexOf(value) : number
+Mengecek posisi index data terakhir
+
+Kode : Array Search
+        const source = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5];
+
+        console.info(source.find(value => value > 3));
+        console.info(source.findIndex(value => value > 3));
+        console.info(source.includes(7));
+        console.info(source.indexOf(5));
+        console.info(source.lastIndexOf(5));
+
+Array Filter
+Array memiliki function untuk melakukan filter data
+
+ Function
+Keterangan
+filter(value => boolean) : Array
+Melakukan filter data yang kondisinya bernilai true
+
+Kode : Array Filter
+        const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        const ganjil = numbers.filter(value => value % 2 === 1);
+        const genap = numbers.filter(value => value % 2 === 0);
+
+        console.info(numbers);
+        console.info(ganjil);
+        console.info(genap);
+
+Array Transform
+Array juga memiliki function yang digunakan untuk melakukan transformasi 
+ Function
+Keterangan
+map(value => result) : Array<result>
+Melakukan transform tiap value dan menghasilkan array result
+reduce(resultBefore, value => result) : result
+Melakukan transform dengan menggunakan value array dan value selanjutnya, lalu hasilnya dilanjutkan ke iterasi selanjutnya
+reduceRight(resultBefore, value => result)
+Sama seperti reduce(), namun dilakukan dari belakang
+
+Kode : Array Transform
+        const names = ["Eko", "Kurniawan", "Khannedy"];
+        const namesUpper = names.map(value => value.toUpperCase());
+        console.info(namesUpper);
+
+        const namesReduce = names.reduce((before, value) => before + " " + value);
+        console.info(namesReduce);
+
+        const namesRight = names.reduceRight((before, value) => before + " " + value);
+        console.info(namesRight);
+
+        const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        const total = numbers.reduce((before, value) => before + value);
+        console.info(total);
+
+Dan Function lain-lain
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#instance_methods 
+
+Object
+Tipe data object sudah sering sekali kita bahas di JavaScript Dasar dan JavaScript OOP
+Pada materi ini, kita akan bahas banyak static method yang terdapat pada Object
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object 
+
+Object Freeze & Seal
+Secara default, object bisa diubah atau dihapus properties nya
+Jika kita ingin mengubah sebuah object menjadi object yang tidak bisa diubah atau dihapus, kita bisa menggunakan beberapa static method
+Object.freeze() digunakan untuk mengubah object menjadi object yang tidak bisa diubah atau dihapus attribute nya
+Object.seal() digunakan untuk mengubah object menjadi object yang tidak bisa dihapus attribute nya
+
+Kode : Object Freeze
