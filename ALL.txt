@@ -372,3 +372,824 @@ Kode : Object Freeze
 
 </script>
 
+Object Assign
+Kadang kita ada kasus menggabungkan semua attribute dari sebuah object ke object lain
+Hal ini bisa kita lakukan dengan menggunakan Object.assign(target, source)
+
+Kode : Object Assign
+        const target = {
+            firstName: "Eko"
+        };
+        const source = {
+            lastName: "Khannedy"
+        };
+
+        Object.assign(target, source);
+        console.info(target);
+        console.info(source);
+
+Object Property Name & Value
+Object juga memiliki static method untuk digunakan mengambil semua properties names dan values
+Object.values() digunakan untuk mengambil semua property value
+Object.getPropertyNames() digunakan untuk mengambil semua properti name
+
+Kode : Object Property Name & Value
+        const person = {
+            firstName: "Eko",
+            lastName: "Khannedy"
+        };
+
+        console.info(Object.values(person));
+        console.info(Object.getOwnPropertyNames(person));
+
+Dan Function Lain-Lain
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object 
+
+JSON
+
+Pengenalan JSON
+JSON singkatan dari JavaScript Object Notation
+JSON merupakan data String yang bentuknya mirip dengan JavaScript Object
+Saat ini JSON banyak sekali digunakan untuk komunikasi antara Server dan Client
+https://www.json.org/json-en.html 
+
+JSON
+JavaScript mendukung konversi data dari String json ke Object ataupun sebaliknya
+JSON.stringify() digunakan untuk melakukan konversi dari Object ke String
+JSON.parse() digunakan untuk melakukan konversi dari String ke Object
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON 
+
+Kode : JSON
+<script>
+
+    const person = {
+        firstName: "Eko",
+        middleName: "Kurniawan",
+        lastName: "Khannedy",
+        address : {
+            country: "Indonesia",
+            city: "Subang"
+        },
+        hobbies: [
+            "Coding", "Game", "Traveling"
+        ]
+    };
+
+    const json = JSON.stringify(person);
+    console.info(json);
+
+    const jsonObject = JSON.parse(json);
+    console.info(jsonObject);
+
+</script>
+
+{
+  "firstName": "Eko",
+  "middleName": "Kurniawan",
+  "lastName": "Khannedy",
+  "address": {
+    "country": "Indonesia",
+    "city": "Subang"
+  },
+  "hobbies": [
+    "Coding",
+    "Game",
+    "Traveling"
+  ]
+}
+
+BigInt
+BigInt merupakan tipe data Number yang bisa mencakup data angka lebih dari Number.MAX_SAFE_INTEGER
+Untuk kasus number yang lebih dari itu, sangat disarankan menggunakan tipe data BigInt
+Cara penggunaan BigInt sama saja dengan penggunaan Number dan juga operator nya
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt 
+
+Kode : BigInt
+<script>
+
+  const a = BigInt(Number.MAX_SAFE_INTEGER);
+  const b = BigInt(Number.MAX_SAFE_INTEGER);
+
+  const c = a + b;
+  console.info(c);
+  console.info(typeof c);
+
+</script>
+
+Date
+JavaScript memiliki tipe data untuk representasi waktu dan tanggal, yaitu Date
+Date merupakan representasi milisecond sejak tanggal 1 Januari 1970, atau dikenal dengan Epoch & Unix Timestamp
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date 
+
+Membuat Object Date
+Untuk membuat object Date, kita bisa menggunakan new Date(), dimana terdapat constructor parameter
+ new Date()
+Membuat date saat ini
+new Date(year, month, date)
+Membuat date dengan tanggal
+new Date(year, month, date?, hour?, minute?, second?, milis?)
+Membuat date dengan parameter sampai milis
+new Date(timestamp)
+Membuat date dari epoch atau unix timestamp
+
+Kode : Membuat Object Date
+<script>
+
+  {
+    // create date
+
+    const date1 = new Date();
+    console.info(date1);
+
+    const date2 = new Date(2020, 10, 10);
+    console.info(date2);
+
+    const date3 = new Date(2020, 10, 10, 16, 15, 9, 123);
+    console.info(date3);
+
+    const date4 = new Date(1623167419514);
+    console.info(date4);
+
+  }
+
+  {
+    // epoch & unix timestamp
+
+    const date1 = new Date();
+    console.info(date1.getTime());
+
+    const date2 = new Date(2020, 10, 10);
+    console.info(date2.getTime());
+
+    const date3 = new Date(2020, 10, 10, 16, 15, 9, 123);
+    console.info(date3.getTime());
+
+    const date4 = new Date(1623167419514);
+    console.info(date4.getTime());
+
+    console.info(Date.now());
+
+  }
+
+  {
+    // date parsing
+
+    const time = Date.parse("2020-10-10T08:45:45.123+07:00");
+    console.info(time);
+
+    const date = new Date(time);
+    console.info(date);
+  }
+
+  {
+
+    // getter dan setter
+
+    const date = new Date();
+
+    console.info(date.getFullYear());
+    console.info(date.getMonth());
+    console.info(date.getDate());
+    console.info(date.getHours());
+    console.info(date.getMinutes());
+    console.info(date.getSeconds());
+    console.info(date.getMilliseconds());
+    console.info(date.getTimezoneOffset());
+
+  }
+
+</script>
+
+Epoch & Unix Timestamp
+Dalam menggunakan tipe data waktu, biasanya disemua bahasa pemrograman akan mendukung yang namanya epoch & unix timestamp
+Epoch & Unix timestamp merupakan hitungan miliseconds setelah tanggal  1 Januari 1970
+JavaScript pun mendukung pembuatan waktu dalam bentuk epoch dan unix timestamp
+Untuk mendapatkan waktu saat ini dalam epoch & unix timestamp, kita bisa menggunakan Date.now()
+Untuk mengubah dari object date ke epoch & unix timestamp, kita bisa menggunakan function getTime()
+
+Kode : Unix Timestamp
+    const date1 = new Date();
+    console.info(date1.getTime());
+
+    const date2 = new Date(2020, 10, 10);
+    console.info(date2.getTime());
+
+    const date3 = new Date(2020, 10, 10, 16, 15, 9, 123);
+    console.info(date3.getTime());
+
+    const date4 = new Date(1623167419514);
+    console.info(date4.getTime());
+
+    console.info(Date.now());
+
+Parsing Date
+Kita juga bisa melakukan parsing membuat date dari string menggunakan method Date.parse(value)
+Format string harus YYYY-MM-DDTHH:mm:ss.sssZ
+Dimana jika kita hanya membuat date berisi tanggal saya, kita cukup gunakan YYYY-MM-DD
+Jika date dengan tanggal dan waktu, gunakan YYYY-MM-DDTHH:mm:ss.sss
+Jika date dengan tanggal, waktu dan timezone, gunakan YYYY-MM-DDTHH:mm:ss.sssZ
+Hasil parsing adalah unix timestamp, bukan object date
+
+Format Date
+ YYYY
+Tahun
+MM
+Bulan
+DD
+Tanggal
+T
+Pemisah tanggal dan waktu
+HH
+Jam
+mm
+Menit
+ss
+Detik
+sss
+Milidetik
+Z
+Timezone
+
+Kode : Parsing Date
+    const time = Date.parse("2020-10-10T08:45:45.123+07:00");
+    console.info(time);
+
+    const date = new Date(time);
+    console.info(date);
+
+Date Getter dan Setter
+Date juga memiliki banyak sekali method untuk mendapatkan informasi date dan juga mengubah informasi date, atau istilahnya adalah getter dan setter
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#instance_methods 
+
+Kode : Date Getter dan Setter
+    console.info(date.getFullYear());
+    console.info(date.getMonth());
+    console.info(date.getDate());
+    console.info(date.getHours());
+    console.info(date.getMinutes());
+    console.info(date.getSeconds());
+    console.info(date.getMilliseconds());
+    console.info(date.getTimezoneOffset());
+
+Math
+Math merupakan class di JavaScript yang berisikan static property dan method untuk operasi matematika
+Ada banyak sekali static property dan method di Math
+Math hanya bisa digunakan untuk tipe data Number, tidak bisa digunakan untuk tipe data BigInt
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math 
+
+Kode : Math
+<script>
+
+    console.info(Math.max(10, 11, 12, 13, 8));
+    console.info(Math.min(10, 11, 12, 13, 8));
+    console.info(Math.round(10.5));
+    console.info(Math.round(10.3));
+    console.info(Math.floor(10.8));
+    console.info(Math.ceil(10.3));
+
+</script>
+
+Boolean
+Boolean merupakan wrapper class untuk tipe primitif boolean
+Boolean memiliki method toString() untuk mengkonversi ke String
+Dan memiliki method valueOf() untuk mengkonversi ke tipe boolean primitif
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean 
+
+Kode Boolean 
+<script>
+
+  const boolean = Boolean(true);
+
+  console.info(boolean);
+  console.info(typeof boolean);
+  console.info(boolean.toString());
+  console.info(boolean.valueOf());
+
+</script>
+
+Map
+Map merupakan representasi dari struktur data key-value
+Map mirip dengan tipe data object, hanya saja pada Map, semua method untuk manipulasi data sudah disediakan
+Map mengikuti kontrak iterable, sehingga bisa di iterasi secara default
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map 
+
+Perbedaan Map dan Object
+ Map
+Object
+Pertama dibuat, tidak memiliki key
+Karena memiliki prototype, jadi bisa jadi memiliki default key ketika pertama dibuat
+Key bisa tipe data apapun
+Key hanya bisa string atau symbol
+Jumlah key bisa diketahui dengan mudah dengan attribute size
+Tidak bisa diketahui, harus manual menggunakan iterasi
+Secara default tidak bisa dikonversi ke JSON
+Bisa dikonversi ke JSON secara otomatis
+
+Map Instance Method & Property
+ Method & Property
+Keterangan
+size
+Panjang Map
+clear()
+Menghapus semua isi Map
+delete(key)
+Menghapus data Map berdasarkan key
+get(key) : value
+Mendapatkan data Map berdasarkan key
+has(key) : boolean
+Mengecek apakah Map berisi data key
+set(key, value)
+Mengubah data Map dengan key = value
+forEach((key, value) => )
+Melakukan iterasi Map
+
+Kode : Map
+<script>
+
+  const map = new Map();
+  map.set("Name", "Eko Kurniawan");
+  map.set("Address", "Indonesia");
+
+  console.info(map);
+  console.info(map.get("Name"));
+  console.info(map.get("Address"));
+  console.info(map.get("Hobby"));
+
+  for (const element of map) {
+    console.info(`${element[0]} : ${element[1]}`);
+  }
+
+  map.forEach((value, key) => console.info(`${key} : ${value}`));
+
+</script>
+
+Set
+Set merupakan implementasi dari struktur data yang berisikan data-data unique
+Set mirip seperti Array, hanya saja isi datanya selalu unique
+Jika kita menambahkan data yang sama, maka data hanya akan diterima satu saja
+Set mengimplementasikan kontrak iterable, sehingga bisa diiterasi secara default
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set 
+
+Set Instance Method & Property
+ Method & Property
+Keterangan
+size
+Panjang Set
+add(value)
+Menambah data ke Set
+has(value)
+Mengecek apakah Set memiliki value
+delete(value)
+Menghapus value dari Set
+forEach(value => )
+Melakukan iterasi Set
+
+Kode : Set
+<script>
+
+  const set = new Set();
+
+  set.add("Eko");
+  set.add("Eko");
+  set.add("Kurniawan");
+  set.add("Khannedy");
+
+  console.info(set);
+
+  set.forEach((value) => console.info(value));
+
+</script>
+
+Symbol
+Symbol merupakan tipe data yang digaransi akan selalu unique setiap kali kita membuat data symbol
+Symbol kadang banyak digunakan untuk membuat key pada object
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol 
+
+Kode : Symbol
+<script>
+
+  {
+    // symbol
+    const firstName = Symbol("firstName");
+    const lastName = Symbol("lastName");
+
+    const person = {};
+    person[firstName] = "Eko";
+    person[lastName] = "Khannedy";
+
+    console.info(person);
+  }
+
+  {
+    // symbol for
+
+    console.info(Symbol.for("firstName") === Symbol.for("firstName"));
+
+    const person = {};
+    person[Symbol.for("firstName")] = "Eko";
+    person[Symbol.for("lastName")] = "Khannedy";
+
+    console.info(person);
+    console.info(person[Symbol.for("firstName")]);
+    console.info(person[Symbol.for("lastName")]);
+  }
+
+</script>
+
+Symbol For
+Kadang agak sulit membuat symbol harus selalu menggunakan variable
+Pembuatan symbol juga bisa menggunakan static method Symbol.for(key)
+Jika kita menggunakan key yang sama, Symbol yang sama akan sekalu dikembalikan
+
+Kode : Symbol For
+    console.info(Symbol.for("firstName") === Symbol.for("firstName"));
+
+    const person = {};
+    person[Symbol.for("firstName")] = "Eko";
+    person[Symbol.for("lastName")] = "Khannedy";
+
+    console.info(person);
+    console.info(person[Symbol.for("firstName")]);
+    console.info(person[Symbol.for("lastName")]);
+
+RegExp
+RegExp merupakan implementasi dari regular expression di JavaScript
+Regular expression merupakan fitur untuk mencari text dengan pola
+Membuat regular expression di JavaScript bisa dilakukan dengan dua cara, yaitu menggunakan literal notation atau membuat object RegExp
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp 
+
+Membuat RegExp
+<script>
+
+    {
+        //create regex
+
+        const regex1 = /eko/;
+        const regex2 = new RegExp("eko");
+        const regex3 = new RegExp(/eko/);
+    }
+
+    {
+
+        // test regex
+
+        const name = "eko kurniawan eko khannedy";
+        const regex = /eko/;
+
+        const result = regex.exec(name);
+        console.info(result);
+        console.info(regex.exec("tidak ada"));
+
+        const test = regex.test(name);
+        console.info(test);
+        console.info(regex.test("tidak ada"));
+
+    }
+
+    {
+
+        //regex modifier
+
+        const name = "eko kurniawan\nEko khannedy\nEdo Kurniawan";
+        const regex1 = /^e.o/igm
+        const regex2 = /Kurniawan/ig
+
+        let result;
+        while ((result = regex1.exec(name)) !== null) {
+            console.info(result);
+        }
+
+        while ((result = regex2.exec(name)) !== null) {
+            console.info(result);
+        }
+
+    }
+
+    {
+
+        // advanced regex
+
+        const regex = /ek[ioaeu]/ig
+
+        const name = "eko eki eka eku eke edo eko eki";
+        let result;
+        while ((result = regex.exec(name)) !== null) {
+            console.info(result);
+        }
+
+    }
+
+    {
+
+        const name = "edo eko eki eka eku eke edo eko eki";
+
+        console.info(name.match(/ek[aiueo]/ig));
+        console.info(name.search(/ek[aiueo]/ig));
+        console.info(name.replace(/ek[aiueo]/i, "kamu"));
+        console.info(name.replaceAll(/ek[aiueo]/ig, "kamu"));
+        console.info(name.split(/e/ig));
+
+    }
+
+</script>
+
+RegExp Instance Method
+ Instance Method
+Keterangan
+exec(value) : result
+Eksekusi regex, jika menemukan data sesuai pola, maka kembalikan result nya, jika tidak maka null
+test(value) : boolean
+Eksekusi regex, jika menemukan data sesuai pola, maka return true, jika tidak maka false
+
+Kode : RegExp Instance Method
+        const name = "eko kurniawan eko khannedy";
+        const regex = /eko/;
+
+        const result = regex.exec(name);
+        console.info(result);
+        console.info(regex.exec("tidak ada"));
+
+        const test = regex.test(name);
+        console.info(test);
+        console.info(regex.test("tidak ada"));
+
+RegExp Modifier
+RegExp memiliki modifier untuk mengubah sifat cara pencarian
+ Modifier
+Keterangan
+i
+Regex menjadi incase sensitive
+g
+Pencarian dilakukan secara global, secara default setelah menemukan data, pencarian akan berhenti
+m
+Multiline, pencarian dilakukan di tiap baris (enter)
+
+Kode : RegExp Modifier
+        const name = "eko kurniawan\nEko khannedy\nEdo Kurniawan";
+        const regex1 = /^e.o/igm
+        const regex2 = /Kurniawan/ig
+
+        let result;
+        while ((result = regex1.exec(name)) !== null) {
+            console.info(result);
+        }
+
+        while ((result = regex2.exec(name)) !== null) {
+            console.info(result);
+        }
+
+Fitur RegExp Lainnya
+Assersions : indikasi awal dan akhir teks https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Assertions 
+Character Classes : membedakan antara huruf dan angka https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Character_Classes 
+Group dan Range : melakukan grouping atau range huruf atau angka https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Groups_and_Ranges 
+Quantifiers : menentukan jumlah huruf atau angka https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Quantifiers 
+
+Kode : Contoh Fitur RegExp
+        const regex = /ek[ioaeu]/ig
+
+        const name = "eko eki eka eku eke edo eko eki";
+        let result;
+        while ((result = regex.exec(name)) !== null) {
+            console.info(result);
+        }
+
+Regular Expression di String
+Di JavaScript, tipe data String memiliki instance method yang dapat memanfaatkan RegExp untuk melakukan pencarian
+ String Method
+Keterangan
+match(regex) : Array
+Mencari semua data yang sesuai dengan regex
+search(regex) : index
+Mencari index data yang sesuai dengan regex
+replace(regex, value)
+Mengubah data dengan value yang sesuai regex
+replaceAll(regex, value)
+Mengubah semua data dengan value yang sesuai regex
+split(regex) : Array
+Memotong string dengan regex
+
+Kode : Regular Expression di String
+        const name = "edo eko eki eka eku eke edo eko eki";
+
+        console.info(name.match(/ek[aiueo]/ig));
+        console.info(name.search(/ek[aiueo]/ig));
+        console.info(name.replace(/ek[aiueo]/i, "kamu"));
+        console.info(name.replaceAll(/ek[aiueo]/ig, "kamu"));
+        console.info(name.split(/e/ig));
+
+Proxy
+Proxy merupakan fitur yang bisa digunakan sebagai wakil sebuah data
+Dengan menggunakan proxy, semua interaksi ke data akan selalu melalui Proxy terlebih dahulu
+Dengan ini, kita bisa melakukan apapun sebelum interaksi dilakukan ke data yang dituju
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy 
+
+Proxy Handler
+Pembuatan Proxy perlu menggunakan handler, dimana dalam handler, kita bisa membuat function yang dinamakan interceptor yang digunakan ketika mengambil data atau mengubah data ke target
+Untuk membuat Proxy, kita bisa menggunakan new Proxy(target, handler)
+
+Kode : Membuat Handler
+<script>
+
+    const target = {
+        middleName: "Kurniawan"
+    };
+
+    const handler = {
+        get: function (target, property) {
+            console.info(`Access property : ${property}`);
+            return target[property];
+        },
+        set: function (target, property, value) {
+            console.info(`Change property ${property} : ${value}`)
+            if(value == null){
+                // throw new Error("Tidak boleh null");
+                target[property] = "";
+            }else{
+                target[property] = value;
+            }
+        }
+    };
+
+    const proxy = new Proxy(target, handler);
+    proxy.firstName = "Eko";
+    proxy.lastName = null;
+
+    console.info(proxy.firstName);
+    console.info(proxy.middleName);
+    console.info(proxy.lastName);
+    console.info(target);
+
+</script>
+
+Kode : Membuat Proxy
+    const proxy = new Proxy(target, handler);
+    proxy.firstName = "Eko";
+    proxy.lastName = null;
+
+    console.info(proxy.firstName);
+    console.info(proxy.middleName);
+    console.info(proxy.lastName);
+    console.info(target);
+
+Proxy dan Handler
+Saat kita mengubah data proxy, secara otomatis data akan dikirim ke target melalui handler dengan memanggil function set(target, property, value)
+Saat kita mengambil data proxy, secara otomatis data akan diambil dari target melalui handler dengan memanggil function get(target, property)
+Artinya, jika kita ingin melakukan sesuatu sebelum dan setelah nya, bisa kita lakukan di handler
+
+Kode : Log Handler
+    const handler = {
+        get: function (target, property) {
+            console.info(`Access property : ${property}`);
+            return target[property];
+        },
+        set: function (target, property, value) {
+            console.info(`Change property ${property} : ${value}`)
+            if(value == null){
+                // throw new Error("Tidak boleh null");
+                target[property] = "";
+            }else{
+                target[property] = value;
+            }
+        }
+    };
+
+Reflect
+Reflect merupakan class yang digunakan untuk mengeksekusi JavaScript function
+Reflect tidak memiliki constructor, dan cara penggunaan Reflect tidak dengan membuat object dengan new Reflect
+Penggunaan Reflect adalah menggunakan banyak sekali static methodnya
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect 
+
+Kode : Reflect
+<script>
+
+    const person = {};
+
+    Reflect.set(person, "firstName", "Eko");
+    Reflect.set(person, "lastName", "Khannedy");
+
+    console.info(person);
+
+    console.info(Reflect.get(person, "firstName"));
+    console.info(Reflect.get(person, "lastName"));
+
+    console.info(Reflect.has(person, "firstName"));
+    console.info(Reflect.has(person, "middleName"));
+    console.info(Reflect.has(person, "lastName"));
+
+</script>
+
+Encode
+Saat kita menulis URL, kadang kita ingin menambahkan informasi tambahan seperti query parameter misalnya
+URL sendiri sudah memiliki standard encoding penulisan URL
+Standard encoding ini dilakukan agar penulisan URL aman ketika diterima oleh server
+Aman disini dalam artian informasi URL tidak berubah
+Contoh paling sederhana, misal, walaupun kita bisa mengirim spasi dalam url, tapi disarankan untuk di encode agar nilai spasi tidak benar-benar terlihat seperti spasi pada URL nya
+
+Contoh Masalah Jika Tidak Menggunakan Encode
+Misal ada query parameter dengan nama data, lalu kita ingin mengirimkan nilai kesana
+Misal nilainya adalah &eko=eko&, alhasil URL nya akan seperti berikut
+http://contoh.com?data=&eko=eko&
+URL diatas terlihat tidak ada masalah, tapi sebenarnya ketika diterima oleh server, parameter data bernilai kosong, kenapa? karena & dianggap sebagai pemisah antar parameter
+Artinya tanda seperti & dan lain-lain perlu di encode, agar tidak terjadi kesalahan data yang kita kirim
+
+Encode Function
+ Function
+Keterangan
+encodeURI(value)
+Melakukan encode value, namun karakter yang dipesan di URI tidak akan diubah ;,/?:@&=+$#
+encodeURIComponent(value)
+Melakukan encode value semua karakter
+decodeURI(encoded)
+Melakukan decode value hasil encodeURI()
+decodeURIComponent(encoded)
+Melakukan decode value hasil encodeURIComponent()
+
+Kode : encodeURI dan decodeURI
+<script>
+
+    {
+        // encode uri dan decode uri
+
+        const url = "http://contoh.com/?name=Eko Kurniawan Khannedy";
+        console.info(url)
+
+        const encoded = encodeURI(url);
+        console.info(encoded);
+
+        const decoded = decodeURI(encoded);
+        console.info(decoded);
+
+    }
+
+    {
+        // encode uri dan decode uri
+
+        const value = "Eko&Kurniawan=Khannedy";
+        const url = "http://contoh.com/?name=";
+        console.info(url + value)
+
+        const encoded = encodeURIComponent(value);
+        console.info(url + encoded);
+
+        const decoded = decodeURIComponent(encoded);
+        console.info(url + decoded);
+
+    }
+
+</script>
+
+Kode : encodeURIComponent dan decodeURICompoentn
+        const value = "Eko&Kurniawan=Khannedy";
+        const url = "http://contoh.com/?name=";
+        console.info(url + value)
+
+        const encoded = encodeURIComponent(value);
+        console.info(url + encoded);
+
+        const decoded = decodeURIComponent(encoded);
+        console.info(url + decoded);
+
+Base64
+Base64 merupakan binary to text encoding, representasi binary data dalam format string
+Base64 merupakan format text data yang aman untuk dikirimkan di web
+Base64 merupakan encoding yang biasanya digunakan ketika perlu mengirim data dari client ke server
+Karena encoding Base64 merupakan text, oleh karena itu sangat aman digunakan pada query param URL atau text body dalam form
+https://developer.mozilla.org/en-US/docs/Glossary/Base64 
+
+Base64 Function
+JavaScript memiliki function bawaan untuk melakukan encode Base64 atau decode base64
+ Function
+Keterangan
+btoa(value)
+Encode ke base64 dari value
+atob(encoded)
+Decode dari base64 ke value
+
+Kode : Base64
+<script>
+
+    const original = "Eko&Kurniwan=Khannedy";
+    console.info(original);
+
+    const encoded = btoa(original);
+    console.info(encoded);
+
+    const decoded = atob(encoded);
+    console.info(decoded);
+
+</script>
+
+Eval
+Eval merupakan function yang digunakan untuk mengeksekusi kode JavaScript dari String
+Fitur ini sangat menarik, namun perlu hati-hati ketika menggunakannya
+Jika sampai salah penggunaan, maka bisa jadi kita malah mengeksekusi kode program yang bisa menyebabkan masalah keamanan di website kita
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
+
+Kode : Eval
+<script>
+
+    const script = "alert('Anda di heck')";
+
+    eval(script);
+
+</script>
